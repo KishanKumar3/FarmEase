@@ -1,4 +1,7 @@
+using FarmEase.Application.Services.Implementation;
+using FarmEase.Application.Services.Interface;
 using FarmEase.Domain.Entities;
+using FarmEase.Domain.Helper;
 using FarmEase.Infrastructure.Data;
 using FarmEase.WebAPI.SeedData;
 using Microsoft.AspNetCore.Identity;
@@ -20,9 +23,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IJWTService, JWTService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
 var app = builder.Build();
 
@@ -35,6 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStaticFiles(new StaticFileOptions
