@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/FarmEase.Application/obj
+/FarmEase.Domain/obj
+/FarmEase.Infrastructure/obj
+/FarmEase.WebAPI/obj
+/Shared/obj
