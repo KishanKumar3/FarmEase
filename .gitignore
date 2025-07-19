@@ -8,3 +8,8 @@
 /FarmEase.Infrastructure/obj
 /FarmEase.WebAPI/obj
 /Shared/obj
+/FarmEase.Application/bin/Debug/net8.0
+/FarmEase.Domain/bin/Debug/net8.0
+/FarmEase.Infrastructure/bin/Debug/net8.0
+/FarmEase.WebAPI/bin/Debug/net8.0
+/Shared/bin/Debug/net8.0
