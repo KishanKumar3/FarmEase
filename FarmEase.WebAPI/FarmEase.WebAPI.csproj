@@ -19,8 +19,4 @@
     <ProjectReference Include="..\FarmEase.Application\FarmEase.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

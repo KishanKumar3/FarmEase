@@ -1,3 +1,4 @@
+using AutoMapper;
 using FarmEase.Application.Services.Implementation;
 using FarmEase.Application.Services.Interface;
 using FarmEase.Domain.Entities;
@@ -6,6 +7,7 @@ using FarmEase.Infrastructure.Data;
 using FarmEase.WebAPI.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +25,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddAutoMapper(cfg =>{}, AppDomain.CurrentDomain.GetAssemblies()); // This scans all assemblies for classes inheriting from AutoMapper.Profile
+
 builder.Services.AddScoped<IJWTService, JWTService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
