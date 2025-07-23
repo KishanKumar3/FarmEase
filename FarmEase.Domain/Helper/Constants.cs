@@ -12,6 +12,22 @@
             public static readonly string UnexpectedError = "An unexpected error occurred.";
         }
 
+        public struct SuccessMessages
+        {
+            public static readonly string Created = "{0} has been created successfully with id - {1}";
+            public static readonly string Updated = "{0} with id - {1} has been updated successfully.";
+            public static readonly string Deleted = "{0} with id - {1} has been deleted successfully.";
+        }
+        public struct Entities
+        {
+            public static readonly string Amenity = "Amenity";
+            public static readonly string Booking = "Booking";
+            public static readonly string FarmRoom = "FarmRoom";
+            public static readonly string Farm = "Farm";
+            public static readonly string User = "User";
+        }
+
+
         public enum ErrorCode
         {
             /// <summary>
