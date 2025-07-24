@@ -9,6 +9,7 @@ namespace FarmEase.Domain.Helper
         public AutoMapperProfiles()
         {
             CreateMap<RegisterModel, ApplicationUser>();
+            CreateMap<FarmModel, Farm>().ReverseMap();
         }
     }
 }

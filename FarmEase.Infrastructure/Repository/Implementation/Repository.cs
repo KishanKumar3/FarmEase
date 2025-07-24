@@ -1,4 +1,5 @@
-﻿using FarmEase.Infrastructure.Data;
+﻿using FarmEase.Domain.Helper;
+using FarmEase.Infrastructure.Data;
 using FarmEase.Infrastructure.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -36,7 +37,7 @@ namespace FarmEase.Infrastructure.Repository.Implementation
 
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach (var includeProp in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProp in includeProperties.Split(Constants.Separator.Comma, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp.Trim());
                 }
@@ -50,7 +51,7 @@ namespace FarmEase.Infrastructure.Repository.Implementation
 
             if(!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var includeProp in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                foreach(var includeProp in includeProperties.Split(Constants.Separator.Comma, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp.Trim());
                 }
