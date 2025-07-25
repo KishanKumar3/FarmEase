@@ -18,6 +18,8 @@
             public static readonly string InvalidFile = "The file format is invalid or File size exceeds limit";
             public static readonly string MappingError = "Unable to map {0} with {1}";
             public static readonly string NotAvailable = "Not available";
+            public static readonly string InvalidMailInput = "Email, subject, and message must not be empty.";
+            public static readonly string MailFailed = "Failed to send email";
         }
 
         public struct SuccessMessages
@@ -25,6 +27,7 @@
             public static readonly string Created = "{0} has been created successfully with id - {1}";
             public static readonly string Updated = "{0} with id - {1} has been updated successfully.";
             public static readonly string Deleted = "{0} with id - {1} has been deleted successfully.";
+            public static readonly string MailSent = "An email has been sent to {0} - Check your mailbox";
         }
         public struct Entities
         {
