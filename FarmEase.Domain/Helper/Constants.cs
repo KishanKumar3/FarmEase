@@ -59,6 +59,30 @@
             public static readonly string NewLine = "\n";
             public static readonly string CarriageReturnLineFeed = "\r\n";
         }
+        public struct BookingInfo
+        {
+            public static readonly string Subject = "Successfull Booking | FarmEase";
+            public const string BookingConfirmationMessage = @"
+            <html>
+                <body>
+                    <h2>Booking Confirmation</h2>
+                    <p>Dear {0},</p>
+                    <p>Thank you for your booking. Here are your booking details:</p>
+                    <table style='border-collapse: collapse; width: 100%;'>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Booking ID</td><td style='padding: 8px; border: 1px solid #ccc;'>{1}</td></tr>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Check-in Date</td><td style='padding: 8px; border: 1px solid #ccc;'>{2}</td></tr>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Check-out Date</td><td style='padding: 8px; border: 1px solid #ccc;'>{3}</td></tr>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Farm</td><td style='padding: 8px; border: 1px solid #ccc;'>{4}</td></tr>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Booking Date</td><td style='padding: 8px; border: 1px solid #ccc;'>{5}</td></tr>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Nights</td><td style='padding: 8px; border: 1px solid #ccc;'>{6}</td></tr>
+                        <tr><td style='padding: 8px; border: 1px solid #ccc;'>Total cost</td><td style='padding: 8px; border: 1px solid #ccc;'>{7}</td></tr>
+                    </table>
+                    <p>Have a nice trip!</p>
+                    <br/>
+                    <p>Regards,<br/>The FarmEase Team</p>
+                </body>
+            </html>";
+        }
 
 
 

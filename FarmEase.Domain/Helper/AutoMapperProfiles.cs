@@ -10,6 +10,7 @@ namespace FarmEase.Domain.Helper
         {
             CreateMap<RegisterModel, ApplicationUser>();
             CreateMap<FarmModel, Farm>().ReverseMap();
+            CreateMap<BookingModel, Booking>();
         }
     }
 }
