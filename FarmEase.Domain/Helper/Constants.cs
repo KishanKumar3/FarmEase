@@ -21,6 +21,7 @@
             public static readonly string NotAvailable = "Not available";
             public static readonly string InvalidMailInput = "Email, subject, and message must not be empty.";
             public static readonly string MailFailed = "Failed to send email";
+            public static readonly string ValidationError = "Mandatory parameter(s) is/are missing - {0}. Please send a valid request.";
         }
 
         public struct SuccessMessages
@@ -85,6 +86,11 @@
             </html>";
         }
 
+        public struct QueryParameters
+        {
+            public const string CheckInDate = "checkindate";
+            public const string CheckOutDate = "checkoutdate";
+        }
 
 
         public enum ErrorCode

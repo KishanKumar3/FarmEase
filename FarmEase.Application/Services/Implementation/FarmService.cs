@@ -144,7 +144,7 @@ public class FarmService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<FarmSer
         }
     }
 
-    public async Task<IEnumerable<Farm>> GetFarmsAvailabilityByDate(DateTime checkInDate, DateTime checkOutDate)
+    public async Task<IEnumerable<Farm>> GetFarmsAvailabilityByDate(DateTime? checkInDate, DateTime? checkOutDate)
     {
         _logger.LogInformation($"{nameof(FarmService)}.{nameof(GetFarmsAvailabilityByDate)}: begin from {checkInDate} to {checkOutDate}");
         try
@@ -231,7 +231,7 @@ public class FarmService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<FarmSer
         }
     }
 
-    private async Task<bool> IsFarmAvailableByDate(int farmId, DateTime checkInDate, DateTime checkOutDate)
+    private async Task<bool> IsFarmAvailableByDate(int farmId, DateTime? checkInDate, DateTime? checkOutDate)
     {
         try
         {
