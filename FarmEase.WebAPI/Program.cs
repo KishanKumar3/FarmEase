@@ -4,6 +4,9 @@ using FarmEase.Application.Services.Interface;
 using FarmEase.Domain.Entities;
 using FarmEase.Domain.Helper;
 using FarmEase.Infrastructure.Data;
+using FarmEase.Infrastructure.Repository.Implementation;
+using FarmEase.Infrastructure.Repository.Interface;
+using FarmEase.Infrastructure.Repository.UnitOfWork;
 using FarmEase.WebAPI.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +32,18 @@ builder.Services.AddAutoMapper(cfg =>{}, AppDomain.CurrentDomain.GetAssemblies()
 
 builder.Services.AddScoped<IJWTService, JWTService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IFarmService, FarmService>();
+builder.Services.AddScoped<IAmenityService, AmenityService>();
+builder.Services.AddScoped<IFarmRoomService, FarmRoomService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IFarmRoomRepository, FarmRoomRepository>();
+builder.Services.AddScoped<IFarmRepository, FarmRepository>();
+builder.Services.AddScoped<IAmenityRepository, AmenityRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
