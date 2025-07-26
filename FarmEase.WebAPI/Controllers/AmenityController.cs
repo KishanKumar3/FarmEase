@@ -41,7 +41,7 @@ namespace FarmEase.WebAPI.Controllers
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage)
                         .ToList();
-                    var errorMessage = string.Join("; ", errors);
+                    var errorMessage = string.Join(Constants.Separator.Semicolon, errors);
                     response = new ApiResponse<string>(null!, false, new ApiError(errorMessage, Constants.ErrorCode.BadRequest));
                     return BadRequest(response);
                 }
@@ -137,7 +137,7 @@ namespace FarmEase.WebAPI.Controllers
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage)
                         .ToList();
-                    var errorMessage = string.Join("; ", errors);
+                    var errorMessage = string.Join(Constants.Separator.Semicolon, errors);
                     response = new ApiResponse<string>(null!, false, new ApiError(errorMessage, Constants.ErrorCode.BadRequest));
                     return BadRequest(response);
                 }
