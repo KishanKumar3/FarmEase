@@ -10,6 +10,7 @@
         public struct ErrorMessages
         {
             public static readonly string NoRecordFound = "Requested data is not available.";
+            public static readonly string NotExists = "No {0} exists with id - {1}.";
             public static readonly string InvalidLogin = "Email or Password is incorrect!";
             public static readonly string UserExists = "User already exists, please login!";
             public static readonly string LoginError = "An error occurred while processing login.";

@@ -23,6 +23,11 @@ public class AmenityService : IAmenityService
         _logger.LogInformation($"{nameof(AmenityService)}.{nameof(Create)}: begin");
         try
         {
+            var farm = await _unitOfWork.Farm.GetAsync(x => x.Id == amenity.FarmId);
+            if (farm == null)
+            {
+                throw new CustomException(String.Format(Constants.ErrorMessages.NotExists, Constants.Entities.Farm, amenity.FarmId));
+            }
             await _unitOfWork.Amenity.Add(amenity);
             await _unitOfWork.SaveChangesAsync();
             _logger.LogInformation($"{nameof(AmenityService)}.{nameof(Create)}: amenity created successfully");
