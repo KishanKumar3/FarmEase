@@ -24,7 +24,7 @@ namespace FarmEase.Application.Services.Implementation
             if (string.IsNullOrEmpty(toEmail) || string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(message))
             {
                 _logger.LogWarning($"{nameof(EmailService)}.{nameof(SendEmailAsync)}: Email, subject, or message is null or empty.");
-                throw new ArgumentException("Email, subject, and message must not be empty.");
+                throw new ArgumentException(Constants.ErrorMessages.InvalidMailInput);
             }
             try
             {
