@@ -25,12 +25,12 @@ namespace FarmEase.Application.Services.Implementation
             _emailService = emailService;
             _mapper = mapper;
         }
-        public async Task<string> CreatBooking(BookingModel bookingModel)
+        public async Task<string> CreateBooking(BookingModel bookingModel)
         {
-            _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreatBooking)}: begin");
+            _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreateBooking)}: begin");
             try
             {
-                _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreatBooking)}: Mapped booking model to booking entity with farmId {bookingModel.FarmId}");
+                _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreateBooking)}: Mapped booking model to booking entity with farmId {bookingModel.FarmId}");
                 var booking = _mapper.Map<Booking>(bookingModel);
                 if(booking == null)
                 {
@@ -39,25 +39,27 @@ namespace FarmEase.Application.Services.Implementation
                 booking.Status = Status.CONFIRMED;
                 await _unitOfWork.Booking.Add(booking);
                 await _unitOfWork.SaveChangesAsync();
+                var bookingDetails = await _unitOfWork.Booking.GetAsync(x => x.Id == booking.Id, Constants.Entities.Farm);
                 var htmlBody = string.Format(
                     Constants.BookingInfo.BookingConfirmationMessage,
-                    booking.Name,
-                    booking.Id,
-                    booking.CheckInDate.ToString("dd-MM-yyyy"),
-                    booking.CheckOutDate.ToString("dd-MM-yyyy"),
-                    booking.Farm.Name,
-                    booking.BookingDate.ToString("dd-MM-yyyy"),
-                    booking.Nights,
-                    booking.Farm.Price * booking.Nights
+                    bookingDetails?.Name,
+                    bookingDetails?.Id,
+                    bookingDetails?.CheckInDate.ToString("dd-MM-yyyy"),
+                    bookingDetails?.CheckOutDate.ToString("dd-MM-yyyy"),
+                    bookingDetails?.Farm.Name,
+                    bookingDetails?.BookingDate.ToString("dd-MM-yyyy"),
+                    bookingDetails?.Nights,
+                    bookingDetails?.Farm.Price * booking.Nights
                 );
+                _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreateBooking)}: html body - {htmlBody}");
 
                 await _emailService.SendEmailAsync(booking.Email, Constants.BookingInfo.Subject, htmlBody);
-                _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreatBooking)}: booking created successfully");
+                _logger.LogInformation($"{nameof(BookingService)}.{nameof(CreateBooking)}: booking created successfully");
                 return String.Format(Constants.SuccessMessages.Created, Constants.Entities.Booking, booking.Id);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"{nameof(BookingService)}.{nameof(CreatBooking)}:{ex.Message}");
+                _logger.LogError(ex, $"{nameof(BookingService)}.{nameof(CreateBooking)}:{ex.Message}");
                 throw new CustomException(ex.Message);
             }
         }
@@ -69,8 +71,8 @@ namespace FarmEase.Application.Services.Implementation
             {
                 IEnumerable<Booking> bookings;
                 var includeProps = new List<string>() { 
-                    Constants.DbSet.ApplicationUsers,
-                    Constants.DbSet.Farms,
+                    Constants.Entities.User,
+                    Constants.Entities.Farm,
                 };
 
                 bookings = !string.IsNullOrEmpty(userId) ? await _unitOfWork.Booking.GetAllAsync(x => x.UserId == userId, includeProperties: string.Join(Constants.Separator.Comma, includeProps)) : await _unitOfWork.Booking.GetAllAsync(includeProperties: string.Join(Constants.Separator.Comma, includeProps));

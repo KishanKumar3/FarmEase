@@ -37,15 +37,7 @@
             public static readonly string Booking = "Booking";
             public static readonly string FarmRoom = "FarmRoom";
             public static readonly string Farm = "Farm";
-            public static readonly string User = "User";
-        }
-        public struct DbSet
-        {
-            public static readonly string Amenities = "Amenities";
-            public static readonly string Bookings = "Bookings";
-            public static readonly string FarmRooms = "FarmRooms";
-            public static readonly string Farms = "Farms";
-            public static readonly string ApplicationUsers = "ApplicationUsers";
+            public static readonly string User = "ApplicationUser";
         }
 
         public struct Separator
@@ -90,6 +82,8 @@
         {
             public const string CheckInDate = "checkindate";
             public const string CheckOutDate = "checkoutdate";
+            public const string FarmId = "farmid";
+            public const string Nights = "nights";
         }
 
 

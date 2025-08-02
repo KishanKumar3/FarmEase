@@ -123,7 +123,7 @@ public class FarmService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<FarmSer
         _logger.LogInformation($"{nameof(FarmService)}.{nameof(GetByIdAsync)}: begin with id = {id}");
         try
         {
-            var includeProps = new List<string> { Constants.DbSet.Amenities, Constants.DbSet.FarmRooms };
+            var includeProps = new List<string> { Constants.Entities.Amenity, Constants.Entities.FarmRoom };
             var farm = await _unitOfWork.Farm.GetAsync(
                 x => x.Id == id && x.IsAvailable && !x.IsDelete,
                 includeProperties: string.Join(Constants.Separator.Comma, includeProps));
@@ -149,7 +149,7 @@ public class FarmService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<FarmSer
         _logger.LogInformation($"{nameof(FarmService)}.{nameof(GetFarmsAvailabilityByDate)}: begin from {checkInDate} to {checkOutDate}");
         try
         {
-            var includeProps = new List<string> { Constants.DbSet.Amenities, Constants.DbSet.FarmRooms };
+            var includeProps = new List<string> { Constants.Entities.Amenity, Constants.Entities.FarmRoom };
             var farms = await _unitOfWork.Farm.GetAllAsync(
                 x => x.IsAvailable && !x.IsDelete,
                 includeProperties: string.Join(Constants.Separator.Comma, includeProps));
